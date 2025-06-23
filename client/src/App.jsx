@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import "./index.css";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [newTask, setNewTask] = useState("");
-  const [editingTask, setEditingTask] = useState(null);
-  const [editingTitle, setEditingTitle] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Cargar tareas al montar el componente
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  // GET - Obtener todas las tareas
+  // GET
   const fetchTasks = async () => {
     try {
       setLoading(true);
@@ -27,10 +25,8 @@ function App() {
     }
   };
 
-  // POST - Crear nueva tarea
-  const createTask = async (e) => {
-    e.preventDefault();
-    if (!newTask.trim()) return;
+  const createTask = async (title) => {
+    if (!title.trim()) return;
 
     try {
       const response = await fetch("/api/tasks", {
@@ -38,20 +34,21 @@ function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title: newTask }),
+        body: JSON.stringify({ title: title }),
       });
 
       if (response.ok) {
         const task = await response.json();
         setTasks([...tasks, task]);
-        setNewTask("");
+        return true;
       }
+      return false;
     } catch (error) {
       console.error("Error al crear tarea:", error);
+      return false;
     }
   };
 
-  // PATCH - Cambiar estado completado
   const toggleComplete = async (id, completed) => {
     try {
       const response = await fetch(`/api/tasks/${id}`, {
@@ -71,9 +68,8 @@ function App() {
     }
   };
 
-  // PUT - Actualizar título de tarea
-  const updateTask = async (id) => {
-    if (!editingTitle.trim()) return;
+  const updateTask = async (id, newTitle) => {
+    if (!newTitle.trim()) return false;
 
     try {
       const task = tasks.find((t) => t.id === id);
@@ -83,7 +79,7 @@ function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title: editingTitle,
+          title: newTitle,
           completed: task.completed,
         }),
       });
@@ -91,15 +87,16 @@ function App() {
       if (response.ok) {
         const updatedTask = await response.json();
         setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
-        setEditingTask(null);
-        setEditingTitle("");
+        return true;
       }
+      return false;
     } catch (error) {
       console.error("Error al actualizar tarea:", error);
+      return false;
     }
   };
 
-  // DELETE - Eliminar tarea
+  //DELETE
   const deleteTask = async (id) => {
     try {
       const response = await fetch(`/api/tasks/${id}`, {
@@ -114,97 +111,48 @@ function App() {
     }
   };
 
-  const startEditing = (task) => {
-    setEditingTask(task.id);
-    setEditingTitle(task.title);
-  };
-
-  const cancelEditing = () => {
-    setEditingTask(null);
-    setEditingTitle("");
-  };
-
   if (loading) {
     return <div className="loading">Cargando tareas...</div>;
   }
 
+  const completedTasks = tasks.filter((task) => task.completed).length;
+  const totalTasks = tasks.length;
+
   return (
-    <div className="App">
-      <h1 className="font-light text-4xl">Lista de Tareas</h1>
-
-      {/* Formulario para nueva tarea */}
-      <form onSubmit={createTask} className="task-form">
-        <input
-          type="text"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          placeholder="Nueva tarea..."
-          className="task-input"
-        />
-        <button type="submit" className="add-btn">
-          Agregar
-        </button>
-      </form>
-
-      {/* Lista de tareas */}
-      <div className="tasks-list">
-        {tasks.length === 0 ? (
-          <p className="no-tasks ">No hay tareas</p>
-        ) : (
-          tasks.map((task) => (
-            <div
-              key={task.id}
-              className={`task ${task.completed ? "completed" : ""}`}
-            >
-              <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => toggleComplete(task.id, task.completed)}
-                className="task-checkbox"
+    <main className="">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-300 p-6">
+        <div className="max-w-2xl mx-auto">
+          <header className="text-center mb-8">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              Lista de Tareas
+            </h1>
+            <p className="text-gray-600">
+              {completedTasks} de {totalTasks} tareas completadas
+            </p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+              <div
+                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
+                style={{
+                  width: `${
+                    totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0
+                  }%`,
+                }}
               />
-
-              {editingTask === task.id ? (
-                <div className="editing">
-                  <input
-                    type="text"
-                    value={editingTitle}
-                    onChange={(e) => setEditingTitle(e.target.value)}
-                    className="edit-input"
-                  />
-                  <button
-                    onClick={() => updateTask(task.id)}
-                    className="save-btn"
-                  >
-                    Guardar
-                  </button>
-                  <button onClick={cancelEditing} className="cancel-btn">
-                    Cancelar
-                  </button>
-                </div>
-              ) : (
-                <div className="task-content">
-                  <span className="task-title">{task.title}</span>
-                  <div className="task-actions">
-                    <button
-                      onClick={() => startEditing(task)}
-                      className="edit-btn"
-                    >
-                      Editar
-                    </button>
-                    <button
-                      onClick={() => deleteTask(task.id)}
-                      className="delete-btn"
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
-          ))
-        )}
+          </header>
+          <div>
+            <TaskForm onCreateTask={createTask} />
+          </div>
+
+          <TaskList
+            tasks={tasks}
+            onToggleComplete={toggleComplete}
+            onUpdateTask={updateTask}
+            onDeleteTask={deleteTask}
+          />
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 

@@ -16,18 +16,9 @@ let tasks = [
 let nextId = 3;
 
 // RUTAS
-// GET - Obtener todas las tareas
+// GET
 app.get("/api/tasks", (req, res) => {
   res.json(tasks);
-});
-
-// GET - Obtener una tarea por ID
-app.get("/api/tasks/:id", (req, res) => {
-  const task = tasks.find((t) => t.id === parseInt(req.params.id));
-  if (!task) {
-    return res.status(404).json({ error: "Tarea no encontrada" });
-  }
-  res.json(task);
 });
 
 // POST
@@ -53,23 +44,19 @@ app.post("/api/tasks", (req, res) => {
 app.put("/api/tasks/:id", (req, res) => {
   const taskId = parseInt(req.params.id);
   const { title, completed } = req.body;
-
   const taskIndex = tasks.findIndex((t) => t.id === taskId);
   if (taskIndex === -1) {
     return res.status(404).json({ error: "Tarea no encontrada" });
   }
-
   if (!title || title.trim() === "") {
     return res.status(400).json({ error: "El título es requerido" });
   }
-
   tasks[taskIndex] = {
     ...tasks[taskIndex],
     title: title.trim(),
     completed: completed !== undefined ? completed : tasks[taskIndex].completed,
     updatedAt: new Date(),
   };
-
   res.json(tasks[taskIndex]);
 });
 
@@ -77,18 +64,15 @@ app.put("/api/tasks/:id", (req, res) => {
 app.patch("/api/tasks/:id", (req, res) => {
   const taskId = parseInt(req.params.id);
   const { completed } = req.body;
-
   const taskIndex = tasks.findIndex((t) => t.id === taskId);
   if (taskIndex === -1) {
     return res.status(404).json({ error: "Tarea no encontrada" });
   }
-
   tasks[taskIndex] = {
     ...tasks[taskIndex],
     completed: completed,
     updatedAt: new Date(),
   };
-
   res.json(tasks[taskIndex]);
 });
 
@@ -107,6 +91,11 @@ app.delete("/api/tasks/:id", (req, res) => {
 
 app.use((req, res) => {
   res.status(404).json({ error: "Ruta no encontrada" });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Error interno del servidor" });
 });
 
 app.listen(PORT, () => {
