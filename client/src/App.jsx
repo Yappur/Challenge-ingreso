@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Footer from "./components/Footer";
 import "./index.css";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
@@ -150,6 +151,8 @@ function App() {
             onUpdateTask={updateTask}
             onDeleteTask={deleteTask}
           />
+
+          <Footer />
         </div>
       </div>
     </main>
