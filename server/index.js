@@ -10,7 +10,12 @@ app.use(express.json());
 
 let tasks = [
   { id: 1, title: "Tarea de ejemplo", completed: false, createdAt: new Date() },
-  { id: 2, title: "Otra tarea", completed: true, createdAt: new Date() },
+  {
+    id: 2,
+    title: "Realizar el challenge de ingreso a la Academia ForIt",
+    completed: true,
+    createdAt: new Date(),
+  },
 ];
 
 let nextId = 3;

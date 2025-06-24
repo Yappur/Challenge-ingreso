@@ -3,16 +3,23 @@ import Footer from "./components/Footer";
 import "./index.css";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchTasks();
   }, []);
 
-  // GET
+  //Filtro
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  //GET
   const fetchTasks = async () => {
     try {
       setLoading(true);
@@ -112,11 +119,16 @@ function App() {
     }
   };
 
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+  };
+
   if (loading) {
     return <div className="loading">Cargando tareas...</div>;
   }
 
-  const completedTasks = tasks.filter((task) => task.completed).length;
+  const completedTasks = filteredTasks.filter((task) => task.completed).length;
+  const totalFilteredTasks = filteredTasks.length;
   const totalTasks = tasks.length;
 
   return (
@@ -128,25 +140,38 @@ function App() {
               Lista de Tareas
             </h1>
             <p className="text-gray-600">
-              {completedTasks} de {totalTasks} tareas completadas
+              {searchTerm ? (
+                <>
+                  {completedTasks} de {totalFilteredTasks} tareas completadas
+                  (filtradas de {totalTasks} tareas)
+                </>
+              ) : (
+                <>
+                  {completedTasks} de {totalTasks} tareas completadas
+                </>
+              )}
             </p>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
               <div
                 className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
                 style={{
                   width: `${
-                    totalTasks > 0 ? (completedTasks / totalTasks) * 100 : 0
+                    totalFilteredTasks > 0
+                      ? (completedTasks / totalFilteredTasks) * 100
+                      : 0
                   }%`,
                 }}
               />
             </div>
           </header>
+
           <div>
             <TaskForm onCreateTask={createTask} />
           </div>
+          <SearchBar onSearch={handleSearch} searchTerm={searchTerm} />
 
           <TaskList
-            tasks={tasks}
+            tasks={filteredTasks}
             onToggleComplete={toggleComplete}
             onUpdateTask={updateTask}
             onDeleteTask={deleteTask}
