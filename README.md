@@ -14,7 +14,7 @@ Gestor de Tareas es una aplicación web moderna y eficiente diseñada para ayuda
 🖼️ **Vista Previa:**
 
 <div align="center">
-  <img src="https://imgur.com/a/Giyva8V" alt="Captura de pantalla del Gestor de Tareas" width="800">
+  <img src="https://i.imgur.com/feyrt8V.png" alt="Captura de pantalla del Gestor de Tareas" width="800">
 </div>
 
 # 📦 Instalación y ejecución
