@@ -34,7 +34,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
             onChange={handleInputChange}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            className="flex-1 px-4 py-3 outline-none text-lg"
+            className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 text-base sm:text-lg"
           />
           {searchTerm && (
             <button
