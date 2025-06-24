@@ -24,6 +24,15 @@ const TaskItem = ({ task, onToggleComplete, onUpdateTask, onDeleteTask }) => {
     }
   };
 
+  const formatDate = (createdAt) => {
+    const date = new Date(createdAt);
+    return date.toLocaleDateString("es-AR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   return (
     <div className="group relative cursor-pointer">
       {task.completed && (
@@ -133,6 +142,18 @@ const TaskItem = ({ task, onToggleComplete, onUpdateTask, onDeleteTask }) => {
                     <Trash2 className="w-3.5 h-3.5" />
                     Eliminar
                   </button>
+                  <div
+                    className={`
+                  text-lg font-semibold transition-all duration-300
+                  ${
+                    task.completed
+                      ? "text-green-700 line-through opacity-75"
+                      : "text-gray-800 group-hover:text-blue-700"
+                  }
+                `}
+                  >
+                    {formatDate(task.createdAt)}
+                  </div>
                 </div>
               </div>
             )}
