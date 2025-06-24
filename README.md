@@ -1,31 +1,31 @@
 # 📩 Gestor de tareas
 
-Gestor de Tareas es una aplicación web moderna y eficiente diseñada para ayudar a los usuarios a organizar y gestionar sus tareas diarias de manera intuitiva. Este proyecto fue desarrollado como parte del proceso de admisión a una academia de programación, demostrando habilidades en desarrollo frontend y backend.
+Gestor de Tareas es una aplicación web moderna y eficiente diseñada para ayudar a los usuarios a organizar y gestionar sus tareas diarias de manera intuitiva. Este proyecto fue desarrollado como parte del proceso de admisión a la academia de programación ForIT, demostrando habilidades en desarrollo frontend y backend.
 
 # ✨ Características principales
 
-📝 Crear tareas: Añade nuevas tareas con título, descripción y fecha límite
-✅ Marcar como completadas: Cambia el estado de las tareas fácilmente
-🗑️ Eliminar tareas: Remueve tareas que ya no necesites
-💾 Editar tareas: Las tareas se editan facilmente
-🎨 Interfaz intuitiva: Diseño limpio y fácil de usar
-📱 Responsive: Adaptable a diferentes dispositivos
+- 📝 **Crear tareas:** Añade nuevas tareas con título, descripción y fecha límite
+- ✅ **Marcar como completadas:** Cambia el estado de las tareas fácilmente
+- 🗑️ **Eliminar tareas:** Remueve tareas que ya no necesites
+- 💾 **Editar tareas:** Las tareas se editan fácilmente
+- 🎨 **Interfaz intuitiva:** Diseño limpio y fácil de usar
+- 📱 **Responsive:** Adaptable a diferentes dispositivos
 
-🖼️ Vista Previa
+🖼️ **Vista Previa:**
 
 <div align="center">
-  <img src="https://drive.google.com/file/d/1mG_gm18EHTNGVsyjmdm9qJJtmP2qETIG/view?usp=sharing" alt="Captura de pantalla del Gestor de Tareas" width="800">
+  <img src="https://imgur.com/a/Giyva8V" alt="Captura de pantalla del Gestor de Tareas" width="800">
 </div>
 
 # 📦 Instalación y ejecución
 
-Prerrequisitos
+**Prerrequisitos**
 
-Node.js (versión 14 o superior)
-npm (incluido con Node.js)
-Git
+- Node.js (versión 14 o superior)
+- npm (incluido con Node.js)
+- Git
 
-Pasos de instalación
+Pasos de instalación:
 
 # 1. Clona el repositorio
 
@@ -35,13 +35,17 @@ git clone https://github.com/Yappur/Challenge-ingreso.git
 
 cd Challenge-ingreso
 
-# 3. Instala las dependencias
+# 3. Instala la raíz
 
 npm install
 
-# 4. Inicia la aplicación
+# 4. Instalar dependencias del frontend y backend
 
-npm start
+npm run install-all
+
+# 5. Inicia la aplicación
+
+npm run dev
 
 ## 🛠️ Tecnologías Utilizadas
 
