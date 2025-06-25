@@ -54,11 +54,18 @@ npm run dev
 | Tecnología   | Descripción                                                               |
 | ------------ | ------------------------------------------------------------------------- |
 | React        | Librería principal para la construcción de interfaces de usuario          |
-| Node.JS      | entorno de ejecución para crear servidores y aplicaciones backend.        |
+| Node.JS      | Entorno de ejecución para crear servidores y aplicaciones backend.        |
 | Express      | framework para Node.js que facilita la creación de APIs y servidores web. |
 | Tailwind CSS | Framework de CSS para estilos rápidos y responsivos                       |
+| Figma        | Utiliazado para definir estilos previos                                   |
 | Lucide React | Bibliotecas de íconos para mejorar la UI                                  |
 | Vite         | Empaquetador y servidor de desarrollo ultrarrápido                        |
 | ESLint       | Herramienta para mantener código limpio y uniforme                        |
 
+</div>
+
+🖼️ **Mockup Creado:**
+
+<div align="center">
+  <img src="https://i.imgur.com/KQrr7xb.png" alt="Mockup del Gestor de Tareas" width="800">
 </div>
