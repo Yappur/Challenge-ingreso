@@ -39,7 +39,7 @@ const TaskForm = ({ onCreateTask }) => {
         <button
           type="submit"
           disabled={isSubmitting || !title.trim()}
-          className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm sm:text-base rounded-lg sm:rounded-xl hover:from-blue-600 hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 hover:scale-105 sm:hover:scale-109 shadow-lg hover:shadow-xl cursor-pointer min-w-[120px] sm:min-w-[140px]"
+          className="flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-blue-500 to-gray-900 text-white text-sm sm:text-base rounded-lg sm:rounded-xl hover:from-blue-500 hover:to-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-500 hover:scale-105 sm:hover:scale-109 shadow-lg hover:shadow-xl cursor-pointer min-w-[120px] sm:min-w-[140px]"
         >
           <Plus className="w-5 h-5" />
           {isSubmitting ? "Agregando..." : "Agregar"}

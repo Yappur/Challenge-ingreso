@@ -133,10 +133,10 @@ function App() {
 
   return (
     <main className="">
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-300 p-6">
-        <div className="max-w-2xl mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-300 p-6">
+        <div className="max-w-2xl mx-auto mt-8">
           <header className="text-center mb-8">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-gray-900 bg-clip-text text-transparent mb-4">
               Lista de Tareas
             </h1>
             <p className="text-gray-600">
@@ -153,7 +153,7 @@ function App() {
             </p>
             <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
               <div
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500"
+                className="bg-gradient-to-r from-blue-500 to-gray-900 h-2 rounded-full transition-all duration-500"
                 style={{
                   width: `${
                     totalFilteredTasks > 0

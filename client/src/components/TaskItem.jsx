@@ -166,7 +166,7 @@ const TaskItem = ({ task, onToggleComplete, onUpdateTask, onDeleteTask }) => {
           ${
             task.completed
               ? "w-full bg-gradient-to-r from-green-400 to-emerald-500"
-              : "w-0 bg-gradient-to-r from-blue-400 to-blue-600 group-hover:w-full"
+              : "w-0 bg-gradient-to-r from-blue-500 to-gray-900 group-hover:w-full"
           }
         `}
         />
