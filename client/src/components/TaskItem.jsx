@@ -98,7 +98,7 @@ const TaskItem = ({ task, onToggleComplete, onUpdateTask, onDeleteTask }) => {
                   <button
                     onClick={handleSaveEdit}
                     disabled={!editingTitle.trim()}
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-gray-900 text-white rounded-xl hover:from-blue-600 hover:to-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
                   >
                     <Save className="w-4 h-4" />
                     Guardar

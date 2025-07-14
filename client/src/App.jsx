@@ -5,6 +5,8 @@ import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import SearchBar from "./components/SearchBar";
 import Modal from "./components/Modal";
+import toast, { Toaster } from "react-hot-toast";
+import { FaRegCheckCircle } from "react-icons/fa";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -43,6 +45,18 @@ function App() {
     setSelectedTask(id);
     setDeleteModal(true);
   };
+
+  const onSucces = () =>
+    toast("Accion realizada con exito", {
+      icon: <FaRegCheckCircle className="h-7 w-7 text-[#ffffff] " />,
+      position: "top-right",
+      style: {
+        borderRadius: "10px",
+        fontSize: "20px",
+        background: "#94BCEB",
+        color: "#0052B0",
+      },
+    });
 
   const createTask = async (title) => {
     if (!title.trim()) return;
@@ -125,6 +139,7 @@ function App() {
       if (response.ok) {
         setTasks(tasks.filter((task) => task.id !== id));
         setDeleteModal(false);
+        onSucces();
       }
     } catch (error) {
       console.error("Error al eliminar tarea:", error);
@@ -214,6 +229,8 @@ function App() {
         btnPrimario="Editar"
         btnSecundario="Cancelar"
       />
+
+      <Toaster />
     </main>
   );
 }
