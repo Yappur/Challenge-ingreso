@@ -7,6 +7,7 @@ import SearchBar from "./components/SearchBar";
 import Modal from "./components/Modal";
 import toast, { Toaster } from "react-hot-toast";
 import { FaRegCheckCircle } from "react-icons/fa";
+import { HiOutlineClipboardDocument } from "react-icons/hi2";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -163,8 +164,9 @@ function App() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-300 p-6">
         <div className="max-w-2xl mx-auto mt-8">
           <header className="text-center mb-8">
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-gray-900 bg-clip-text text-transparent mb-4">
-              Lista de Tareas
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-gray-900 bg-clip-text text-transparent mb-3">
+              Lista de Tareas{" "}
+              <HiOutlineClipboardDocument className="inline-block text-[#0e0a5c] mb-2.5" />
             </h1>
             <p className="text-gray-600">
               {searchTerm ? (

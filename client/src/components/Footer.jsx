@@ -28,7 +28,7 @@ const Footer = () => {
 
         <div className="space-y-2">
           <p className="text-sm text-gray-600 font-medium">
-            Hecho con ❤️ para el ingreso a ForIt
+            Prueba tecnica realizada para ingreso
           </p>
           <p className="text-xs text-gray-500">© 2025 - Mateo Yapur</p>
         </div>

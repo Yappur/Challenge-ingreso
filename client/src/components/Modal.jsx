@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import { FaSave, FaRegTrashAlt } from "react-icons/fa";
+import { FaSave } from "react-icons/fa";
+import { MdDeleteSweep } from "react-icons/md";
 
 export default function Modal({
   isOpen,
@@ -34,13 +35,13 @@ export default function Modal({
         );
       case "delete":
         return (
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#FBAAB2] ">
-            <FaRegTrashAlt className="h-10 w-10 text-[#D00416] " />
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-l from-[#d84450] to-gray-200">
+            <MdDeleteSweep className="h-10 w-10 text-[#D00416] " />
           </div>
         );
       default:
         return (
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#C6F6D5] ">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-l from-[#d84450] to-gray-200 ">
             <FaSave className="h-10 w-10 text-[#3D75CE]" />
           </div>
         );
@@ -72,7 +73,7 @@ export default function Modal({
           ref={modalRef}
           className="w-full max-w-sm rounded-lg bg-white p-6 shadow-lg shadow-black/75"
         >
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
+          <div className="flex flex-col items-center justify-center space-y-3 text-center">
             <div className="">{getIcon()}</div>
 
             <h3 className="text-xl font-bold">{titulo}</h3>
@@ -83,13 +84,13 @@ export default function Modal({
               <>
                 <button
                   onClick={handleAccionSecundaria}
-                  className="w-full rounded border border-[#152D53] px-4 py-2 text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out"
+                  className="w-full rounded-xl border border-gray-700 px-4 py-2 text-gray-700 hover:bg-gray-200 transition duration-500 ease-in-out shadow-lg hover:shadow-xl cursor-pointer"
                 >
                   {btnSecundario}
                 </button>
                 <button
                   onClick={handleAccionPrimaria}
-                  className="w-full rounded bg-[#152D53] px-4 py-2 text-white hover:bg-gray-800 transition duration-300 ease-in-out"
+                  className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-gray-900 text-white rounded-xl hover:from-blue-600 hover:to-gray-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
                 >
                   {btnPrimario}
                 </button>

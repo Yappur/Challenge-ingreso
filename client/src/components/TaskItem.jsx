@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Check, Edit3, Trash2, X, Save } from "lucide-react";
+import { MdWorkspacePremium } from "react-icons/md";
 
 const TaskItem = ({ task, onToggleComplete, onUpdateTask, onDeleteTask }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,8 +38,9 @@ const TaskItem = ({ task, onToggleComplete, onUpdateTask, onDeleteTask }) => {
     <div className="group relative cursor-pointer">
       {task.completed && (
         <div className="absolute -top-2 -right-2 z-10 animate-bounce">
-          <div className="bg-gradient-to-r from-green-400 to-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-12">
-            ¡Completada! ✨
+          <div className="bg-gradient-to-r from-green-400 to-emerald-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg transform rotate-12">
+            ¡Completada!
+            <MdWorkspacePremium className="inline-block w-5.5 h-5.5" />
           </div>
         </div>
       )}
