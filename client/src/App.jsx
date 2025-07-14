@@ -4,11 +4,17 @@ import "./index.css";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
 import SearchBar from "./components/SearchBar";
+import Modal from "./components/Modal";
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+
+  const [selectedTask, setSelectedTask] = useState(null);
 
   useEffect(() => {
     fetchTasks();
@@ -31,6 +37,11 @@ function App() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const openDeleteModal = (id) => {
+    setSelectedTask(id);
+    setDeleteModal(true);
   };
 
   const createTask = async (title) => {
@@ -113,6 +124,7 @@ function App() {
 
       if (response.ok) {
         setTasks(tasks.filter((task) => task.id !== id));
+        setDeleteModal(false);
       }
     } catch (error) {
       console.error("Error al eliminar tarea:", error);
@@ -174,12 +186,34 @@ function App() {
             tasks={filteredTasks}
             onToggleComplete={toggleComplete}
             onUpdateTask={updateTask}
-            onDeleteTask={deleteTask}
+            onDeleteTask={openDeleteModal}
           />
 
           <Footer />
         </div>
       </div>
+
+      <Modal
+        isOpen={deleteModal}
+        onClose={() => setDeleteModal(false)}
+        accionPrimaria={() => deleteTask(selectedTask)}
+        tipo="delete"
+        titulo="Eliminar Tarea"
+        mensaje={`¿Estás seguro de que deseas eliminar la tarea?`}
+        btnPrimario="Eliminar"
+        btnSecundario="Cancelar"
+      />
+
+      <Modal
+        isOpen={editModal}
+        onClose={() => setEditModal(false)}
+        accionPrimaria={() => updateTask(id)}
+        tipo="confirm"
+        titulo="Editar Tarea"
+        mensaje={`¿Estás seguro de que deseas editar la tarea?`}
+        btnPrimario="Editar"
+        btnSecundario="Cancelar"
+      />
     </main>
   );
 }

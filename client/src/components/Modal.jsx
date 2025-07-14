@@ -4,7 +4,7 @@ import { FaSave, FaRegTrashAlt } from "react-icons/fa";
 export default function Modal({
   isOpen,
   onClose,
-  tipo = "success",
+  tipo = "confirm",
   titulo,
   mensaje,
   btnPrimario = "Aceptar",
@@ -15,17 +15,11 @@ export default function Modal({
   const modalRef = useRef(null);
   const [isClosing, setIsClosing] = useState(false);
 
-  useEffect(() => {
-    if (isOpen && modalRef.current) {
-      slideInUp(modalRef.current);
-    }
-  }, [isOpen]);
+  useEffect(() => {}, [isOpen]);
 
   const handleClose = () => {
     setIsClosing(true);
-    slideOutDown(modalRef.current, () => {
-      onClose();
-    });
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -86,29 +80,20 @@ export default function Modal({
             {mensaje && <p className="text-sm text-gray-600">{mensaje}</p>}
 
             <div className="mt-2 flex flex-col space-y-2 sm:flex-row sm:space-x-2 sm:space-y-0">
-              {tipo === "success" || tipo === "error" ? (
+              <>
+                <button
+                  onClick={handleAccionSecundaria}
+                  className="w-full rounded border border-[#152D53] px-4 py-2 text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out"
+                >
+                  {btnSecundario}
+                </button>
                 <button
                   onClick={handleAccionPrimaria}
                   className="w-full rounded bg-[#152D53] px-4 py-2 text-white hover:bg-gray-800 transition duration-300 ease-in-out"
                 >
                   {btnPrimario}
                 </button>
-              ) : (
-                <>
-                  <button
-                    onClick={handleAccionSecundaria}
-                    className="w-full rounded border border-[#152D53] px-4 py-2 text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out"
-                  >
-                    {btnSecundario}
-                  </button>
-                  <button
-                    onClick={handleAccionPrimaria}
-                    className="w-full rounded bg-[#152D53] px-4 py-2 text-white hover:bg-gray-800 transition duration-300 ease-in-out"
-                  >
-                    {btnPrimario}
-                  </button>
-                </>
-              )}
+              </>
             </div>
           </div>
         </div>
