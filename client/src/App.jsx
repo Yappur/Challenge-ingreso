@@ -48,7 +48,7 @@ function App() {
   };
 
   const onSucces = () =>
-    toast("Accion realizada con exito", {
+    toast("Accion realizada con éxito", {
       icon: <FaRegCheckCircle className="h-7 w-7 text-[#ffffff] " />,
       position: "top-right",
       style: {
@@ -121,6 +121,7 @@ function App() {
       if (response.ok) {
         const updatedTask = await response.json();
         setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
+        onSucces();
         return true;
       }
       return false;
@@ -220,18 +221,6 @@ function App() {
         btnPrimario="Eliminar"
         btnSecundario="Cancelar"
       />
-
-      <Modal
-        isOpen={editModal}
-        onClose={() => setEditModal(false)}
-        accionPrimaria={() => updateTask(id)}
-        tipo="confirm"
-        titulo="Editar Tarea"
-        mensaje={`¿Estás seguro de que deseas editar la tarea?`}
-        btnPrimario="Editar"
-        btnSecundario="Cancelar"
-      />
-
       <Toaster />
     </main>
   );

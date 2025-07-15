@@ -29,19 +29,19 @@ export default function Modal({
     switch (tipo) {
       case "confirm":
         return (
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#AFCEFF] ">
+          <div className="flex h-16 w-16 items-center justify-center">
             <FaSave className="h-10 w-10 text-[#3D75CE]" />
           </div>
         );
       case "delete":
         return (
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-l from-[#d84450] to-gray-200">
-            <MdDeleteSweep className="h-10 w-10 text-[#D00416] " />
+          <div className="flex items-center justify-center">
+            <MdDeleteSweep className="h-12 w-12 text-[#ac101d] animate-bounce " />
           </div>
         );
       default:
         return (
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-l from-[#d84450] to-gray-200 ">
+          <div className="flex h-16 w-16 items-center justify-center ">
             <FaSave className="h-10 w-10 text-[#3D75CE]" />
           </div>
         );
