@@ -74,6 +74,7 @@ function App() {
       if (response.ok) {
         const task = await response.json();
         setTasks([...tasks, task]);
+        onSucces();
         return true;
       }
       return false;
