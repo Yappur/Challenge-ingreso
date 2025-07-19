@@ -1,6 +1,6 @@
 # 📩 Gestor de tareas
 
-Gestor de Tareas es una aplicación web moderna y eficiente diseñada para ayudar a los usuarios a organizar y gestionar sus tareas diarias de manera intuitiva. Este proyecto fue desarrollado como parte del proceso de admisión a la academia de programación ForIT, demostrando habilidades en desarrollo frontend y backend.
+Gestor de Tareas es una aplicación web moderna y eficiente diseñada para ayudar a los usuarios a organizar y gestionar sus tareas diarias de manera intuitiva. Este proyecto fue desarrollado como parte de una prueba tecnica de admisión, demostrando habilidades en desarrollo frontend y backend.
 
 # ✨ Características principales
 
